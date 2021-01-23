@@ -1,4 +1,4 @@
-<div class="table-responsive animated fadeInRight">
+<div class="table-responsive animated fadeInRight" style="padding: 10px 30px 10px 30px;">
 	<table class="table m-0 table-striped">
 		<tr>
 			<th><?php echo get_msg('no'); ?></th>

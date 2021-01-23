@@ -12,7 +12,7 @@
 ?>
 
 <div class="container-fluid">
-	<div class="col-12" style="padding: 30px 20px 20px 20px;">
+	<div class="col-12"  style="padding: 30px 20px 20px 20px;">
 		<div class="card earning-widget">
 	    	<div class="card-header" style="border-top: 2px solid red;">
 	    		<h3 class="card-title"><?php echo get_msg('deliboy_info')?></h3>
@@ -93,7 +93,7 @@
 	            <?php 
 	            	$logged_in_user = $this->ps_auth->get_user_info();
 
-	            	if ( $deliboy->status == 2 && $logged_in_user->user_is_sys_admin == 1): 
+	            	if ( $logged_in_user->user_is_sys_admin == 1 && isset($deliboy)): 
 	            ?>
 	            <hr>
 	            <div class="form-group" style="background-color: #edbbbb; padding: 20px;">

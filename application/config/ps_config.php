@@ -20,7 +20,7 @@ $config['cancel_color']   = "#60605b";
 
 
 /** System Email */
-$config['version_no'] = "1.0";
+$config['version_no'] = "1.1";
 
 /** Super Admin Email */
 $config['super_admin_name'] = "PS Admin";

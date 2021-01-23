@@ -1,5 +1,5 @@
 <?php $logged_in_user = $this->ps_auth->get_user_info(); ?>
-<div class="table-responsive animated fadeInRight">
+<div class="table-responsive animated fadeInRight" style="padding: 10px 30px 10px 30px;">
 	<table class="table m-0 table-striped">
 		<tr>
 			<th><?php echo get_msg('no')?></th>

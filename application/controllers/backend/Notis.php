@@ -22,8 +22,8 @@ class Notis extends BE_Controller {
 		$logged_in_user = $this->ps_auth->get_user_info();
 
 		$user_id = $logged_in_user->user_id;
-		if(empty($this->User->has_permission( $module_id,$user_id )) && $logged_in_user->user_is_sys_admin!=1){
-			return redirect( site_url('/admin/'.$shop_id) );
+		if($logged_in_user->user_is_sys_admin!=1){
+			return redirect( site_url('/admin/dashboard/index/'.$shop_id) );
 		}
 		///end check
 	}

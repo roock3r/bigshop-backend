@@ -23,7 +23,7 @@ class Grocery_branches extends BE_Controller {
 
 		$user_id = $logged_in_user->user_id;
 		if(empty($this->User->has_permission( $module_id,$user_id )) && $logged_in_user->user_is_sys_admin!=1){
-			return redirect( site_url('/admin/'.$shop_id) );
+			return redirect( site_url('/admin/dashboard/index/'.$shop_id) );
 		}
 		///end check
 	}

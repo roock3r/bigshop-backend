@@ -86,7 +86,7 @@
 										<option value="0"><?php echo get_msg('select_deli_boy'); ?></option>
 										<?php
 											$conds['role_id'] = 5;
-											$conds['no_publish_filter']= 1;
+											$conds['status']= 1;
 											$deli_boys = $this->User->get_all_by($conds);
 											foreach ($deli_boys->result() as $boy) 
 											{

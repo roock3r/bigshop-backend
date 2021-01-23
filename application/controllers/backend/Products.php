@@ -23,7 +23,7 @@ class Products extends BE_Controller {
 
 		$user_id = $logged_in_user->user_id;
 		if(empty($this->User->has_permission( $module_id,$user_id )) && $logged_in_user->user_is_sys_admin!=1){
-			return redirect( site_url('/admin/'.$shop_id) );
+			return redirect( site_url('/admin/dashboard/index/'.$shop_id) );
 		}
 		///end check
 	}
@@ -660,15 +660,15 @@ class Products extends BE_Controller {
 		 ///start deep link update item tb by MN
 		$description = $data['description'];
 		$name = $data['name'];
-		$conds_img = array( 'img_type' => 'item', 'img_parent_id' => $id );
+		$conds_img = array( 'img_type' => 'product', 'img_parent_id' => $id );
         $images = $this->Image->get_all_by( $conds_img )->result();
-		$img = $this->ps_image->upload_thumbnail_url . $images[0]->img_path;
+		$img = $this->ps_image->upload_url . $images[0]->img_path;
 		$deep_link = deep_linking_shorten_url($description,$name,$img,$id);
-		$item_data = array(
+		$products_data = array(
 			'dynamic_link' => $deep_link
 		);
         // print_r($item_data);die;
-		$this->Product->save($item_data,$id);
+		$this->Product->save($products_data,$id);
 		///End
 
 		// Product Id Checking 

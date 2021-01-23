@@ -22,8 +22,8 @@ class Language_strings extends BE_Controller {
 		$logged_in_user = $this->ps_auth->get_user_info();
 
 		$user_id = $logged_in_user->user_id;
-		if(empty($this->User->has_permission( $module_id,$user_id )) && $logged_in_user->user_is_sys_admin!=1){
-			return redirect( site_url('/admin/'.$shop_id) );
+		if($logged_in_user->user_is_sys_admin!=1){
+			return redirect( site_url('/admin/dashboard/index/'.$shop_id) );
 		}
 		///end check
 	}
@@ -120,11 +120,11 @@ class Language_strings extends BE_Controller {
 		      	// Assign value to variables
 			    $key = trim($csvData[0]);
 			    $value = trim($csvData[1]);
-			    // $language = $this->Language->get_language($conds_lang)->result();
-			    // $language_id = $language[0]->id;
+			    
 			    $conds_str['language_id'] = $language_id;
 			    $conds_str['key'] = $key; 
 			    $strrecord = $this->Language_string->get_language_string($conds_str)->result();
+			    $id = $strrecord[0]->id;
 			   
 			    if (!$strrecord) {
 			    	$str_data = array(
@@ -133,6 +133,12 @@ class Language_strings extends BE_Controller {
 			    	 	'value' => htmlspecialchars_decode($value) 
 			    	);
 			    	
+			    	$this->Language_string->save($str_data,$id);
+			    }else{
+			    	$str_data = array(
+			    		'value' => htmlspecialchars_decode($value) 
+
+			    	);
 			    	$this->Language_string->save($str_data,$id);
 			    }
 		    	

@@ -22,7 +22,7 @@ class Shopusers extends BE_Controller {
 
 		$user_id = $logged_in_user->user_id;
 		if(empty($this->User->has_permission( $module_id,$user_id )) && $logged_in_user->user_is_sys_admin!=1){
-			return redirect( site_url('/admin/'.$shop_id) );
+			return redirect( site_url('/admin/dashboard/index/'.$shop_id) );
 		}
 		///end check
 	}
@@ -177,6 +177,12 @@ class Shopusers extends BE_Controller {
 			$is_shop_admin = 1;
 			$shop_id = $this->input->post('shop_id');
 		}
+
+		if( $this->get_data( 'role_id' ) == '5') {
+			$is_shop_admin = 0;
+		}
+			
+
 
 		$user_data['is_shop_admin'] = $is_shop_admin;
 		

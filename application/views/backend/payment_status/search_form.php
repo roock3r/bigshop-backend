@@ -1,4 +1,4 @@
-<div class='row my-3'>
+<div class='row my-3'  style="padding: 10px 30px 10px 30px;">
 
 	<div class='col-9'>
 	<?php

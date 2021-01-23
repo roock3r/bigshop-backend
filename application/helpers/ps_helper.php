@@ -424,7 +424,7 @@ if ( ! function_exists( 'location_check' ))
 */
 if ( ! function_exists( 'deep_linking_shorten_url' ))
 {
-	function deep_linking_shorten_url ($description,$title,$img,$id) {
+	function deep_linking_shorten_url ($description,$name,$img,$id) {
 		// get ci instance
 		$CI =& get_instance();
 
@@ -452,7 +452,7 @@ if ( ! function_exists( 'deep_linking_shorten_url' ))
 		$socialMetaTagInfo = array(
 		    "socialDescription" => $description,
 		    "socialImageLink"   => $img,
-		    "socialTitle"       => $title
+		    "socialTitle"       => $name
 		);
 		
 		//For only 4 character at url 

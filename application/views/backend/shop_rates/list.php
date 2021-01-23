@@ -3,10 +3,10 @@
 	
 		<tr>
 			<th><?php echo get_msg('no'); ?></th>
-			<th><?php echo get_msg('rating_shop_name'); ?></th>
-			<th><?php echo get_msg('rating_user_name'); ?></th>
+			<th><?php echo get_msg('shop_name'); ?></th>
+			<th><?php echo get_msg('user_name'); ?></th>
 			<th><?php echo get_msg('rating_title'); ?></th>
-			<th><?php echo get_msg('rating_description'); ?></th>
+			<th><?php echo get_msg('description'); ?></th>
 			<th><?php echo get_msg('rating_value'); ?></th>
 			<th><?php echo get_msg('date'); ?></th>
 			<th><span class="th-title"><?php echo get_msg('view'); ?></span></th>

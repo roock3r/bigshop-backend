@@ -21,8 +21,8 @@ class System_users extends BE_Controller {
 		$logged_in_user = $this->ps_auth->get_user_info();
 
 		$user_id = $logged_in_user->user_id;
-		if(empty($this->User->has_permission( $module_id,$user_id )) && $logged_in_user->user_is_sys_admin!=1){
-			return redirect( site_url('/admin/'.$shop_id) );
+		if($logged_in_user->user_is_sys_admin!=1){
+			return redirect( site_url('/admin/dashboard/index/'.$shop_id) );
 		}
 		///end check
 	}
@@ -33,7 +33,7 @@ class System_users extends BE_Controller {
 	function index() {
 
 		//system users filter
-		$conds = array( 'role_id' => 1 );
+		$conds = array( 'role_id' => 1, 'status' => 1 );
 		//$conds['status'] = 1;
 		// get rows count
 		$this->data['rows_count'] = $this->User->count_all_by($conds);
@@ -328,41 +328,41 @@ class System_users extends BE_Controller {
 	 *
 	 * @param      integer  $category_id  The category identifier
 	 */
-	function ajx_publish( $user_id = 0 )
-	{
-		// check access
-		$this->check_access( PUBLISH );
+	// function ajx_publish( $user_id = 0 )
+	// {
+	// 	// check access
+	// 	$this->check_access( PUBLISH );
 		
-		// prepare data
-		$user_data = array( 'status'=> 1 );
+	// 	// prepare data
+	// 	$user_data = array( 'status'=> 1 );
 			
-		// save data
-		if ( $this->User->save( $user_data, $user_id )) {
-			echo true;
-		} else {
-			echo false;
-		}
-	}
+	// 	// save data
+	// 	if ( $this->User->save( $user_data, $user_id )) {
+	// 		echo true;
+	// 	} else {
+	// 		echo false;
+	// 	}
+	// }
 	
 	/**
 	 * Unpublish the records
 	 *
 	 * @param      integer  $category_id  The category identifier
 	 */
-	function ajx_unpublish( $user_id = 0 )
-	{
-		// check access
-		$this->check_access( PUBLISH );
+	// function ajx_unpublish( $user_id = 0 )
+	// {
+	// 	// check access
+	// 	$this->check_access( PUBLISH );
 		
-		// prepare data
-		$user_data = array( 'status'=> 0 );
+	// 	// prepare data
+	// 	$user_data = array( 'status'=> 0 );
 			
-		// save data
-		if ( $this->User->save( $user_data, $user_id )) {
-			echo true;
-		} else {
-			echo false;
-		}
-	}
+	// 	// save data
+	// 	if ( $this->User->save( $user_data, $user_id )) {
+	// 		echo true;
+	// 	} else {
+	// 		echo false;
+	// 	}
+	// }
 
 }

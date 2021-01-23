@@ -22,8 +22,8 @@ class Deliboys extends BE_Controller {
 		$logged_in_user = $this->ps_auth->get_user_info();
 
 		$user_id = $logged_in_user->user_id;
-		if(empty($this->User->has_permission( $module_id,$user_id )) && $logged_in_user->user_is_sys_admin!=1){
-			return redirect( site_url('/admin/'.$shop_id) );
+		if($logged_in_user->user_is_sys_admin!=1){
+			return redirect( site_url('/admin/dashboard/index/'.$shop_id) );
 		}
 		///end check
 	}
@@ -191,34 +191,28 @@ class Deliboys extends BE_Controller {
 			$user_data['user_password'] = md5( $this->get_data( 'user_password' ));
 		}
 
-		// if 'is published' is checked,
-		// if ( $this->has_data( 'deliboy_is_published' )) {
-			
-		// 	$data['status'] = $this->get_data( 'deliboy_is_published' );
-		// } else {
-		// 	if ($logged_in_user->user_is_sys_admin == 1) {
-		// 		$data['status'] = 1;
-		// 	} else {
-		// 		$data['status'] = 2;
-		// 	}
-			
-		// }
-
-		//when creating deli boy by super admin or shop admin, it must be auto approved
-		$data['status'] = 1;
-		$data['role_id'] = 5;
-		// set timezone
-		$data['added_user_id'] = $logged_in_user->user_id;
-
 		if($id == "") {
 			//save
 			$data['added_date'] = date("Y-m-d H:i:s");
+			$data['added_user_id'] = $logged_in_user->user_id;
+			//when creating deli boy by super admin or shop admin, it must be auto approved
+			$data['status'] = 1;
+			$data['role_id'] = 5;
 		} else {
 			//edit
 			unset($data['added_date']);
 			$data['updated_date'] = date("Y-m-d H:i:s");
 			$data['updated_user_id'] = $logged_in_user->user_id;
+			$data['status'] = $this->get_data( 'deliboy_is_published' );
+			
+
 		}
+
+		// for update other such as name
+
+		// if ($this->get_data( 'deliboy_is_published' ) == 0) {
+		// 	$data['status'] = 2;
+		// }
 
 		// save pending wallpaper
 		if ( ! $this->User->save( $data, $id )) {

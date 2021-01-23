@@ -2,7 +2,7 @@
 	<table class="table m-0 table-striped">
 		<tr>
 			<th><?php echo get_msg('no'); ?></th>
-			<th><?php echo get_msg('shop_name_label'); ?></th>
+			<th><?php echo get_msg('shop_name'); ?></th>
 			<th><?php echo get_msg('address_label'); ?></th>
 			<th><?php echo get_msg('user_email'); ?></th>
 			

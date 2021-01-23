@@ -34,7 +34,7 @@ class Contacts extends API_Controller
 	        	'rules' => 'required'
 	        ),
 	        array(
-	        	'field' => 'message',
+	        	'field' => 'phone',
 	        	'rules' => 'required'
 	        )
         );

@@ -87,13 +87,17 @@
 						<?php 
 							$options = array();
 							foreach($this->Role->get_all()->result() as $role) {
-								if ( $role->role_id != 1 ) {
-									$options[$role->role_id] = $role->role_desc;
-									
-								} else if ( $role->role_id == 1 ) {
-									$admin[$role->role_id] = $role->role_desc;
-								} 
+								if ( $role->role_id != 5 ) {
+									if ( $role->role_id != 1 ) {
+										$options[$role->role_id] = $role->role_desc;
+										
+									} else if ( $role->role_id == 1 ) {
+										$admin[$role->role_id] = $role->role_desc;
+									} 
+								}	
 							}
+
+							$shop_role_id = $this->User->get_one_by($conds_user_shop)->role_id;
 
 							if ($user->role_id == 1) {
 								$disabled = "disabled";
@@ -104,13 +108,35 @@
 									'class="form-control form-control-sm" id="role_id" '.$disabled.''
 								);
 							} else {
-								$disabled = "";
-								echo form_dropdown(
+                                if($shop_role_id != 1){
+                                    if(!isset($user)){
+                                        $disabled = "";
+                                        echo form_dropdown(
+                                        'role_id',
+                                        $options,
+                                        set_value( 'role_id', @$user->role_id ),
+                                        'class="form-control form-control-sm" id="role_id" '.$disabled.''
+                                        );
+                                    }else{
+                                        $disabled = "disabled";
+                                        echo form_dropdown(
+                                        'role_id',
+                                        $options,
+                                        set_value( 'role_id', @$user->role_id ),
+                                        'class="form-control form-control-sm" id="role_id" '.$disabled.''
+                                        );
+                                    }
+
+                                }else{
+                                    $disabled = "";
+								    echo form_dropdown(
 									'role_id',
 									$options,
 									set_value( 'role_id', @$user->role_id ),
 									'class="form-control form-control-sm" id="role_id" '.$disabled.''
-								);
+								    );
+                                }
+								
 							}
 						?>
 					</div>
@@ -171,6 +197,7 @@
 								if($user->user_id != "") {
 										$conds1['user_id'] = $user->user_id;
 									} else {
+										$conds1['shop_id'] = 0;
 										$conds1['user_id'] = 0;
 									}
 									
@@ -198,7 +225,8 @@
 							<?php echo get_msg('allowed_modules')?></label>
 						
 						<?php 
-							if (!@$user) {
+							$role_id = $this->User->get_one_by($conds_user_shop)->role_id;
+							if (!$user) {
 								foreach($this->Module->get_all_module()->result() as $module): 
 								if( $module->module_id != 4 ) {
 						?>
@@ -215,22 +243,34 @@
 						<?php } ?>
 						<?php endforeach; ?>
 						<?php 
-							} else { 
+							} else {
 								foreach($this->Module->get_all_module()->result() as $module): 
-								if( $module->module_id != 4 ) {
+									if( $role_id == 1 && $module->module_id != 4 ) {
 						?>
-							<div class="form-check">
-								<label class="form-check-label">
-								
-								<?php echo form_checkbox('permissions[]', $module->module_id, set_checkbox('permissions', $module->module_id, $this->User->has_permission( $module->module_id, @$user->user_id ))); ?>
+										<div class="form-check">
+											<label class="form-check-label">
+											
+											<?php echo form_checkbox('permissions[]', $module->module_id, set_checkbox('permissions', $module->module_id, $this->User->has_permission( $module->module_id, @$user->user_id ))); ?>
 
-								<?php echo $module->module_desc; ?>
+											<?php echo $module->module_desc; ?>
 
-								</label>
-							</div>
-							<?php } ?>
-						<?php endforeach; ?>
+											</label>
+										</div>
+									<?php } else{ ?>
+										<div class="form-check">
+											<label class="form-check-label">
+											
+											<?php echo form_checkbox('permissions[]', $module->module_id, set_checkbox('permissions', $module->module_id, $this->User->has_permission( $module->module_id, @$user->user_id )),'disabled'); ?>
+
+											<?php echo $module->module_desc; ?>
+
+
+											</label>
+										</div>
+									<?php } ?>
+							<?php endforeach; ?>
 						<?php } ?>
+
 					</div>
 				</div>
 

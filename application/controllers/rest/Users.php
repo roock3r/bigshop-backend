@@ -67,7 +67,8 @@ class Users extends API_Controller
         	"code" =>  $code,
         	"role_id" => 5,
         	"verify_types" => 1,
-        	"status" => 2 //Need to verified status
+        	"status" => 2, //Need to verified status
+        	"added_date" =>  date("Y-m-d H:i:s")
         	);
 
       	}	
@@ -85,7 +86,8 @@ class Users extends API_Controller
 	        	"code" =>  "",
 	        	"role_id" => 4,
 	        	"verify_types" => 1,
-	        	"status" => 1 //Need to verified status
+	        	"status" => 1, //Need to verified status
+	        	"added_date" =>  date("Y-m-d H:i:s")
 	        	);	
 
 
@@ -101,7 +103,8 @@ class Users extends API_Controller
 	        	"code" =>  $code,
 	        	"role_id" => 4,
 	        	"verify_types" => 1,
-	        	"status" => 2 //Need to verified status
+	        	"status" => 2, //Need to verified status
+	        	"added_date" =>  date("Y-m-d H:i:s")
 	        	);	
 	        	$conds['status'] = 2;
 
@@ -366,7 +369,8 @@ class Users extends API_Controller
 	        	"verify_types" => 2,
 	        	"role_id" => 5,
 	        	"status" 	=> 2, 
-		        "code"    => ' '
+		        "code"    => ' ',
+		        "added_date" =>  date("Y-m-d H:i:s")
         		);
 
 			}else{
@@ -380,7 +384,8 @@ class Users extends API_Controller
 	        	"verify_types" => 2,
 	        	"role_id" => 4,
 	        	"status" 	=> 1, 
-		        "code"    => ' '
+		        "code"    => ' ',
+		        "added_date" =>  date("Y-m-d H:i:s")
         		);
 
 			}
@@ -554,7 +559,8 @@ class Users extends API_Controller
 					'user_profile_photo' => $img,
 					'device_token'  => $this->post('device_token'),
 					'role_id' => 5,
-					'status'  => 2
+					'status'  => 2,
+					"added_date" =>  date("Y-m-d H:i:s")
 					);
 				}else{
 					$user_data = array(
@@ -563,7 +569,8 @@ class Users extends API_Controller
 					'user_profile_photo' => $img,
 					'device_token'  => $this->post('device_token'),
 					'role_id' => 4,
-					'status' => 1
+					'status' => 1,
+					"added_date" =>  date("Y-m-d H:i:s")
 					);
 				}
 			}else{
@@ -575,7 +582,8 @@ class Users extends API_Controller
 					'user_profile_photo' => $img,
 					'device_token'  => $this->post('device_token'),
 					'status' => 2,
-					'role_id' => 5
+					'role_id' => 5,
+					"added_date" =>  date("Y-m-d H:i:s")
 					);
 				
 			}
@@ -717,7 +725,8 @@ class Users extends API_Controller
 		        	"verify_types" => 3,
 		        	"role_id" => 5,
 		        	"status" 	=> 2, 
-			        "code"   => ' '
+			        "code"   => ' ',
+			        "added_date" =>  date("Y-m-d H:i:s")
 	        		);
 
 				}else{
@@ -731,7 +740,8 @@ class Users extends API_Controller
 		        	"verify_types" => 3,
 		        	"role_id" => 4,
 		        	"status" 	=> 1, 
-			        "code"   => ' '
+			        "code"   => ' ',
+			        "added_date" =>  date("Y-m-d H:i:s")
 	        	);
 
 
@@ -752,7 +762,8 @@ class Users extends API_Controller
 		        	"verify_types" => 3,
 		        	"role_id" => 5,
 		        	"status" 	=> 2, 
-			        "code"   => ' '
+			        "code"   => ' ',
+			        "added_date" =>  date("Y-m-d H:i:s")
         			);
 
 				}else{
@@ -766,7 +777,8 @@ class Users extends API_Controller
 		        	"verify_types" => 3,
 		        	"role_id" => 4,
 		        	"status" 	=> 1, 
-			        "code"   => ' '
+			        "code"   => ' ',
+			        "added_date" =>  date("Y-m-d H:i:s")
         			);
 
 				}
@@ -939,7 +951,8 @@ class Users extends API_Controller
 						'device_token'  => $this->post('device_token'),
 						'user_profile_photo' => $img,
 						'role_id' => 5,
-						'status'  => 2
+						'status'  => 2,
+						"added_date" =>  date("Y-m-d H:i:s")
 						);
 					}else{
 						$user_data = array(
@@ -948,7 +961,8 @@ class Users extends API_Controller
 						'device_token'  => $this->post('device_token'),
 						'user_profile_photo' => $img,
 						'role_id' => 4,
-						'status' => 1
+						'status' => 1,
+						"added_date" =>  date("Y-m-d H:i:s")
 						);
 					}
 				}else{
@@ -960,7 +974,8 @@ class Users extends API_Controller
 						'user_profile_photo' => $img,
 						'device_token'  => $this->post('device_token'),
 						'status' => 2,
-						'role_id' => 5
+						'role_id' => 5,
+						"added_date" =>  date("Y-m-d H:i:s")
 						);
 					}
 
@@ -976,7 +991,8 @@ class Users extends API_Controller
 						'user_email'    => $this->post('user_email'),
 						'device_token'  => $this->post('device_token'),
 						'role_id' => 5,
-						'status'  => 2
+						'status'  => 2,
+						"added_date" =>  date("Y-m-d H:i:s")
 						);
 					}else{
 						$user_data = array(
@@ -984,7 +1000,8 @@ class Users extends API_Controller
 						'user_email'    => $this->post('user_email'),
 						'device_token'  => $this->post('device_token'),
 						'role_id' => 4,
-						'status' => 1
+						'status' => 1,
+						"added_date" =>  date("Y-m-d H:i:s")
 						);
 					}
 				}else{
@@ -995,7 +1012,8 @@ class Users extends API_Controller
 						'user_email'    => $this->post('user_email'),
 						'device_token'  => $this->post('device_token'),
 						'role_id' => 5,
-						'status' => 1
+						'status' => 1,
+						"added_date" =>  date("Y-m-d H:i:s")
 						);
 					
 				}
@@ -1312,7 +1330,8 @@ class Users extends API_Controller
 		        	"user_address" 		   	=> $this->post('user_address'),
 		        	"user_area_id" 		    => $user_area_id,
 		        	"user_lat" 		    	=> $user_lat,
-		        	"user_lng" 		    	=> $user_lng
+		        	"user_lng" 		    	=> $user_lng,
+		        	"added_date" 			=>  date("Y-m-d H:i:s")
 
 		            );
 		        }
@@ -1327,6 +1346,7 @@ class Users extends API_Controller
 	        	"user_lat" 		    	=> $user_lat,
 	        	"user_lng" 		    	=> $user_lng,
 	        	"user_area_id" 		    => $user_area_id,
+	        	"added_date" 			=>  date("Y-m-d H:i:s")
 
 	            );
 	        }    
@@ -1347,7 +1367,8 @@ class Users extends API_Controller
 		        	"user_phone"    		=> $this->post('user_phone'),
 		        	"user_about_me" 		=> $this->post('user_about_me'),
 		        	"user_address" 		   	=> $this->post('user_address'),
-		        	"user_area_id" 		    => $user_area_id
+		        	"user_area_id" 		    => $user_area_id,
+		        	"added_date" 			=>  date("Y-m-d H:i:s")
 
 		            );
 		        }
@@ -1565,7 +1586,8 @@ class Users extends API_Controller
 	        	"device_token" => $this->post('device_token'),
 	        	"verify_types" => 4,
 	        	"role_id" => 5,
-	        	"status" => 2
+	        	"status" => 2,
+	        	"added_date" =>  date("Y-m-d H:i:s")
         		);
 
         	}else{
@@ -1576,7 +1598,8 @@ class Users extends API_Controller
 	        	"device_token" => $this->post('device_token'),
 	        	"verify_types" => 4,
 	        	"role_id" => 4,
-	        	"status" => 1
+	        	"status" => 1,
+	        	"added_date" =>  date("Y-m-d H:i:s")
         		);
         	}
 
@@ -1705,7 +1728,8 @@ class Users extends API_Controller
 					'user_phone'    => $this->post('user_phone'),
 					'device_token'  => $this->post('device_token'),
 					'role_id' => 5,
-					'status'  => 2
+					'status'  => 2,
+					"added_date" =>  date("Y-m-d H:i:s")
 					);
 				}else{
 					$user_data = array(
@@ -1713,7 +1737,8 @@ class Users extends API_Controller
 					'user_phone'    => $this->post('user_phone'),
 					'device_token'  => $this->post('device_token'),
 					'role_id' => 4,
-					'status' => 1
+					'status' => 1,
+					"added_date" =>  date("Y-m-d H:i:s")
 					);
 				}
 			}else{
@@ -1724,7 +1749,8 @@ class Users extends API_Controller
 					'user_phone'    => $this->post('user_phone'),
 					'device_token'  => $this->post('device_token'),
 					'status' => 2,
-					'role_id' => 5
+					'role_id' => 5,
+					"added_date" =>  date("Y-m-d H:i:s")
 					);
 				
 				
@@ -1834,7 +1860,8 @@ class Users extends API_Controller
 	        	"verify_types" => 5,
 	        	"status" 	=> 2, 
 		        "code"   => ' ',
-		        "role_id" => 5
+		        "role_id" => 5,
+		        "added_date" =>  date("Y-m-d H:i:s")
     			);
 			}else{
 				//user
@@ -1846,7 +1873,8 @@ class Users extends API_Controller
 	        	"verify_types" => 5,
 	        	"status" 	=> 1, 
 		        "code"   => ' ',
-		        "role_id" => 4
+		        "role_id" => 4,
+		        "added_date" =>  date("Y-m-d H:i:s")
     			);
 			}
 			
@@ -1969,7 +1997,8 @@ class Users extends API_Controller
 					'user_email'    => $this->post('user_email'),
 					'device_token'  => $this->post('device_token'),
 					'role_id' => 5,
-					'status'  => 2
+					'status'  => 2,
+					"added_date" =>  date("Y-m-d H:i:s")
 					);
 				}else{
 					$user_data = array(
@@ -1977,7 +2006,8 @@ class Users extends API_Controller
 					'user_email'    => $this->post('user_email'),
 					'device_token'  => $this->post('device_token'),
 					'role_id' => 4,
-					'status' => 1
+					'status' => 1,
+					"added_date" =>  date("Y-m-d H:i:s")
 					);
 				}
 			}else{
@@ -1987,7 +2017,8 @@ class Users extends API_Controller
 					'user_email'    => $this->post('user_email'),
 					'device_token'  => $this->post('device_token'),
 					'role_id' => 5,
-					'status' => 2
+					'status' => 2,
+					"added_date" =>  date("Y-m-d H:i:s")
 					);
 				
 			}

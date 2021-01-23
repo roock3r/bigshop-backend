@@ -18,11 +18,11 @@
 			
 			<?php endif; ?>
 
-			<?php if ( $this->ps_auth->has_access( PUBLISH )): ?>
+			<!-- <?php if ( $this->ps_auth->has_access( PUBLISH )): ?>
 				
 				<th><span class="th-title"><?php echo get_msg('btn_publish')?></span></th>
 			
-			<?php endif; ?>
+			<?php endif; ?> -->
 
 		</tr>
 
@@ -62,7 +62,7 @@
 						<td></td>
 					<?php } ?>
 
-					<?php if ( $this->ps_auth->has_access( PUBLISH )): ?>
+					<!-- <?php if ( $this->ps_auth->has_access( PUBLISH )): ?>
 					
 					<td>
 						<?php if ( @$user->status == 1): ?>
@@ -73,7 +73,7 @@
 							<?php echo get_msg('btn_no'); ?></button><?php endif;?>
 					</td>
 				
-				<?php endif; ?>
+				<?php endif; ?> -->
 				</tr>
 			
 			<?php endforeach; ?>
