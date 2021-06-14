@@ -20,7 +20,7 @@ $config['cancel_color']   = "#60605b";
 
 
 /** System Email */
-$config['version_no'] = "1.1";
+$config['version_no'] = "1.3";
 
 /** Super Admin Email */
 $config['super_admin_name'] = "PS Admin";
@@ -37,6 +37,8 @@ $config['fav_display_limit'] = 3;
 $config['like_display_limit'] = 3;
 $config['record_not_found'] = '10001##Sorry';
 $config['record_no_pagination'] = '10002##Sorry, no more record in the system.';
+$config['waiting_for_approval_label'] = "Waiting For Approval";
+$config['reject_label'] = "Reject";
 
 /** FrontEnd Template Path */
 $config['fe_view_path'] = 'frontend';

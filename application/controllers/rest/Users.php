@@ -58,18 +58,36 @@ class Users extends API_Controller
 
       	if ($is_delivery_boy == 1) {
       		// deli boy
-      		$user_data = array(
-        	"user_name" => $this->post('user_name'), 
-        	"user_email" => $this->post('user_email'),
-        	"user_phone" => $this->post('user_phone'), 
-        	'user_password' => md5($this->post('user_password')),
-        	"device_token" => $this->post('device_token'),
-        	"code" =>  $code,
-        	"role_id" => 5,
-        	"verify_types" => 1,
-        	"status" => 2, //Need to verified status
-        	"added_date" =>  date("Y-m-d H:i:s")
-        	);
+
+      		if ($email_verified_enabled != 1) {
+
+	      		$user_data = array(
+	        	"user_name" => $this->post('user_name'), 
+	        	"user_email" => $this->post('user_email'),
+	        	"user_phone" => $this->post('user_phone'), 
+	        	'user_password' => md5($this->post('user_password')),
+	        	"device_token" => $this->post('device_token'),
+	        	"code" =>'',
+	        	"role_id" => 5,
+	        	"verify_types" => 1,
+	        	"status" => 2, //Need to verified status
+	        	"added_date" =>  date("Y-m-d H:i:s")
+	        	);
+	        }else{
+
+	        	$user_data = array(
+	        	"user_name" => $this->post('user_name'), 
+	        	"user_email" => $this->post('user_email'),
+	        	"user_phone" => $this->post('user_phone'), 
+	        	'user_password' => md5($this->post('user_password')),
+	        	"device_token" => $this->post('device_token'),
+	        	"code" =>  $code,
+	        	"role_id" => 5,
+	        	"verify_types" => 1,
+	        	"status" => 2, //Need to verified status
+	        	"added_date" =>  date("Y-m-d H:i:s")
+	        	);
+	        }
 
       	}	
       	else{
@@ -161,7 +179,7 @@ class Users extends API_Controller
        		$subject = get_msg('new_user_register');
 
 	       		if($email_verified_enabled != 1) {
-	        		if ( !send_user_register_email_without_verify( $user_data['user_id'], $subject )) {
+	        		if ( !send_user_register_email_without_verify( $user_id, $subject )) {
 
 					$this->error_response( get_msg( 'user_register_success_but_email_not_send' ));
 				

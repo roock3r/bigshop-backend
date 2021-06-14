@@ -76,5 +76,19 @@
     <link href="<?php echo base_url('assets/fullcalendar/css/fullcalendar.print.css');?>" rel='stylesheet' media='print'>
 	
 </head>
+<?php
+	if( $this->config->item("is_demo") == 1 ) {
+
+		?>
+
+		<div style="background: #FF0000; height: 40px; text-align: center; padding-top: 5px; font-weight: bold; font-size: 20px; "> 
+		<?php	
+			echo "Please be aware backend is demo mode so all those dummy data will be refreshed every one hour.";
+		
+		}
+
+	?>
+
+	</div>
 <body id="<?php echo strtolower( $module_name ); ?>">
 <div class="wrapper">

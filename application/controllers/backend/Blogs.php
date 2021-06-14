@@ -137,6 +137,10 @@ class Blogs extends BE_Controller {
 		$data['shop_id'] = $selected_shop_id['shop_id'];
 		$data['added_user_id'] = $logged_in_user->user_id;
 
+		//update shop status
+		$shop_id = $selected_shop_id['shop_id'];
+		$data['shop_status'] = $this->Shop->get_one($shop_id)->status;
+
 		if($id == "") {
 			//save
 			$data['added_date'] = date("Y-m-d H:i:s");

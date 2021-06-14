@@ -21,20 +21,26 @@
 
 				</div>
 				
-				<div class="form-group">
-					<label><?php echo get_msg('user_email')?></label>
+				<?php if($this->config->item("is_demo") == 1 ) { ?>
+				
+					<div class="form-group">
+						<label><?php echo get_msg('user_email')?></label>
 
-					<?php echo form_input(array(
-						'name' => 'user_email',
-						'value' => set_value( 'user_email', show_data( @$user->user_email ), false ),
-						'class' => 'form-control form-control-sm',
-						'placeholder' => get_msg('user_email'),
-						'id' => 'user_email'
-					)); ?>
+						<?php echo form_input(array(
+							'name' => 'user_email',
+							'value' => set_value( 'user_email', show_data( @$user->user_email ), false ),
+							'class' => 'form-control form-control-sm',
+							'placeholder' => 'Email',
+							'id' => 'user_email',
+							'readonly' => "true"
+						)); ?>
 
-				</div>
+					</div>
+				<?php  } ?>	
 				
 				<?php if ( @$user->user_is_sys_admin == 1 ): ?>
+
+				<?php if($this->config->item("is_demo") != 1 ) { ?>
 
 				<div class="form-group">
 					<label><?php echo get_msg('user_password')?></label>
@@ -44,7 +50,7 @@
 						'name' => 'user_password',
 						'value' => set_value( 'user_password' ),
 						'class' => 'form-control form-control-sm',
-						'placeholder' => get_msg('user_password'),
+						'placeholder' => 'Password',
 						'id' => 'user_password'
 					)); ?>
 				</div>
@@ -57,10 +63,11 @@
 						'name' => 'conf_password',
 						'value' => set_value( 'conf_password' ),
 						'class' => 'form-control form-control-sm',
-						'placeholder' => get_msg('conf_password'),
+						'placeholder' => 'Conf Password',
 						'id' => 'conf_password'
 					)); ?>
 				</div>
+				<?php  } ?>
 
 				<?php endif; ?>
 

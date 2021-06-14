@@ -260,17 +260,13 @@ class Discounts extends BE_Controller {
               
                $this->ProductDiscount->save($check_data);
 
-               $discount_product['id'] = $data['prdcheck'][$i];
-               $discount_product['is_discount'] = 1;
-
-               if($discount_percent != 0 ) {
-               
-                 $product_original_price = $this->Product->get_one($data['prdcheck'][$i])->original_price;
-                 //$discount_price = $product_original_price - intval($product_original_price * ($discount_percent/100));
-                 $discount_price = $product_original_price - round($product_original_price * ($discount_percent/100), 2);
-                 
-                 $discount_product['unit_price'] = round($discount_price, 2);
-                 
+               //update product when discount is ON
+               if($discount_percent != 0 && $data['status'] == 1) {
+                  $discount_product['id'] = $data['prdcheck'][$i];
+                  $discount_product['is_discount'] = 1;
+                  $product_original_price = $this->Product->get_one($data['prdcheck'][$i])->original_price;
+                  $discount_price = $product_original_price - round($product_original_price * ($discount_percent/100), 2);
+                  $discount_product['unit_price'] = round($discount_price, 2);
                }
 
                $this->Product->save($discount_product, $data['prdcheck'][$i]);
@@ -394,6 +390,26 @@ class Discounts extends BE_Controller {
         // check access
         $this->check_access( PUBLISH );
 
+        // update product
+        $conds['discount_id'] = $discount_id;
+        $conds_id['id'] = $discount_id;
+        $percent = $this->Discount->get_one_by($conds_id)->percent;
+        $discount_percent = $percent * 100 ;
+        $prd_dis = $this->ProductDiscount->get_all_by($conds)->result();
+
+        //update product before product discount save
+        for($i=0; $i<count($prd_dis);$i++) {
+          $dis_product['id'] = $prd_dis[$i]->product_id;
+          $dis_product['is_discount'] = 1;
+          if($discount_percent != 0 ) {
+               $product_original_price = $this->Product->get_one($prd_dis[$i]->product_id)->original_price;
+               $discount_price = $product_original_price - round($product_original_price * ($discount_percent/100), 2);
+               $dis_product['unit_price'] = round($discount_price, 2);
+           }
+
+          $this->Product->save($dis_product, $prd_dis[$i]->product_id);
+        }
+
         // prepare data
         $discount_data = array( 'status'=> 1 );
          
@@ -415,6 +431,16 @@ class Discounts extends BE_Controller {
       {
         // check access
         $this->check_access( PUBLISH );
+
+        // update product
+        $conds['discount_id'] = $discount_id;
+        $prd_discount = $this->ProductDiscount->get_all_by($conds)->result();
+        for ($i=0; $i < count( $prd_discount); $i++) { 
+            $prd_org_price = $this->Product->get_one($prd_discount[$i]->product_id)->original_price;
+            $prd_discount_update['is_discount'] = 0;
+            $prd_discount_update['unit_price'] = $prd_org_price;
+            $this->Product->save(  $prd_discount_update , $prd_discount[$i]->product_id );
+        }
 
         // prepare data
         $discount_data = array( 'status'=> 0 );
